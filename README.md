@@ -1,6 +1,6 @@
 # Module Federation SSR
 
-This is an example for Module Federation SSR with React-import-component
+This is an example for Module Federation SSR with [React-imported-component](https://github.com/theKashey/react-imported-component)
 ## Running demo
 
 Run `yarn` to install dependencies
