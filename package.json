@@ -1,0 +1,17 @@
+{
+  "private": true,
+  "scripts": {
+    "gic": "yarn --cwd website1 gic && yarn --cwd website2 gic",
+    "start:website1": "yarn --cwd website1 hmr",
+    "start:website2": "yarn --cwd website2 hmr",
+    "start": "concurrently \"yarn start:website1\" \"yarn start:website2\"",
+    "postinstall": "concurrently \"yarn --cwd website1 install\" \"yarn --cwd website2 install\""
+  },
+  "devDependencies": {
+    "lerna": "3.22.1"
+  },
+  "dependencies": {
+    "nodemon": "^2.0.4",
+    "concurrently": "^5.3.0"
+  }
+}
