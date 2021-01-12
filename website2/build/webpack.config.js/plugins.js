@@ -12,6 +12,7 @@ const client = [
   // new LoadablePlugin({ filename: "stats.json", writeToDisk: true }),
   new webpack.DefinePlugin({
     API_URL: JSON.stringify(require("../config")[env.raw.NODE_ENV].apiUrl),
+    NAME: JSON.stringify("website2"),
   }),
   new ExtractCSSChunks(),
 ];

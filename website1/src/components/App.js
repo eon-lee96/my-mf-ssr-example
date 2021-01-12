@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import importedComponent from "react-imported-component";
 
 const AsyncSharedComponent = importedComponent(() =>
@@ -8,6 +8,9 @@ const AsyncSharedComponent = importedComponent(() =>
 const AsyncWebsite1 = importedComponent(() => import("./AsyncApp"));
 
 export default () => {
+  useEffect(() => {
+    console.log("website1:", NAME);
+  }, []);
   return (
     <div>
       <h1 onClick={() => alert("website1 is interactive")}>
