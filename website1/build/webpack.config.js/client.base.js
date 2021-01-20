@@ -36,14 +36,14 @@ module.exports = merge(common, {
   module: {
     rules: clientLoaders,
   },
+  resolve: {
+    fallback: { path: require.resolve("path-browserify") },
+  },
   plugins: [
     ...plugins.client,
     new ModuleFederationPlugin({
       name: "website1",
       filename: "container.js",
-      remotes: {
-        website2: "website2@http://localhost:3002/static/container.js",
-      },
       shared: [
         {
           ...shared,

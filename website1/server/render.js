@@ -14,6 +14,8 @@ import {
   getUsedStyles,
   getCriticalStyles,
 } from "used-styles";
+import mockConfig from "../src/mockConfig";
+import { nodeLoadRemote } from "../src/util/loadRemote";
 
 import "../src/imported";
 import App from "../src/components/App";
@@ -26,10 +28,12 @@ const importedStat = require("../buildClient/static/imported.json");
 
 export default async (req, res, next) => {
   try {
+    const streamId = createLoadableStream();
+    const RemoteModule = await nodeLoadRemote(mockConfig.website2);
     await whenComponentsReady();
 
-    const streamId = createLoadableStream();
-    const jsx = createApp(App, streamId);
+    const jsx = createApp(App, streamId, RemoteModule);
+
     await stylesLookup;
     // Render your application
     const html = renderToString(jsx) + printDrainHydrateMarks(streamId);
@@ -66,8 +70,8 @@ export default async (req, res, next) => {
   }
 };
 
-const createApp = (App, streamId) => (
+const createApp = (App, streamId, RemoteModule) => (
   <ImportedStream stream={streamId}>
-    <App />
+    <App RemoteModule={RemoteModule.default} />
   </ImportedStream>
 );
