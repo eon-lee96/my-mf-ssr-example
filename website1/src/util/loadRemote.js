@@ -13,6 +13,7 @@ export async function browserLoadRemote(remoteConfig) {
 
 export async function nodeLoadRemote(remoteConfig) {
   const { scope, module, file } = remoteConfig;
+  await __webpack_init_sharing__("default");
   const container = __non_webpack_require__(file);
   await container.init(__webpack_share_scopes__.default);
   const factory = await container.get(module);
