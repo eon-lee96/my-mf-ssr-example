@@ -14,7 +14,7 @@ import {
   getUsedStyles,
   getCriticalStyles,
 } from "used-styles";
-import mockConfig from "../src/mockConfig";
+import { getRemoteConfig } from "../src/mockConfig";
 import { nodeLoadRemote } from "../src/util/loadRemote";
 
 import "../src/imported";
@@ -29,6 +29,7 @@ const importedStat = require("../buildClient/static/imported.json");
 export default async (req, res, next) => {
   try {
     const streamId = createLoadableStream();
+    const mockConfig = await getRemoteConfig();
     const RemoteModule = await nodeLoadRemote(mockConfig.website2);
     await whenComponentsReady();
 

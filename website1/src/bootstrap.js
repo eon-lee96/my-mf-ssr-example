@@ -5,12 +5,13 @@ import ReactDOM from "react-dom";
 import { AppContainer } from "react-hot-loader";
 import { rehydrateMarks } from "react-imported-component";
 import App from "./components/App";
-import mockConfig from "./mockConfig";
+import { getRemoteConfig } from "./mockConfig";
 import { browserLoadRemote } from "./util/loadRemote";
 
 const render = async (App) => {
   if (typeof window !== "undefined") {
     const root = document.getElementById("root");
+    const mockConfig = await getRemoteConfig();
     const remoteModule = await browserLoadRemote(mockConfig.website2);
 
     rehydrateMarks().then(() => {
